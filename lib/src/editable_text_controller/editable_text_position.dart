@@ -7,6 +7,14 @@ class EditableTextPosition {
   bool moving = false;
   final Vector2 position;
 
+  double get x => position.x;
+
+  double get y => position.y;
+
+  set x(double x) => position.x = x;
+
+  set y(double y) => position.y = y;
+
   void startMoving() => moving = true;
 
   void endMoving() => moving = false;

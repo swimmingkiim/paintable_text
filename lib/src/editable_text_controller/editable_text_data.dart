@@ -1,5 +1,5 @@
 class EditableTextData {
-  EditableTextData({this.textData = ''});
+  EditableTextData({required this.textData});
 
   bool editing = false;
   String textData;

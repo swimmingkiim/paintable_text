@@ -23,10 +23,13 @@ class EditableTextController {
     String text = '',
     TextStyle? textStyle,
     Color? color,
+    Offset? offset,
   })  : canvasConstraints = canvasConstraints ?? defaultCanvasConstraints,
         color = color ?? defaultTextColor,
         data = EditableTextData(text: text),
-        position = EditableTextPosition(position: Vector2.zero()),
+        position = EditableTextPosition(position: Vector2.zero())
+          ..x = offset?.dx ?? 0
+          ..y = offset?.dy ?? 0,
         textStyle = textStyle ?? defaultTextStyle;
 
   final EditableTextData data;

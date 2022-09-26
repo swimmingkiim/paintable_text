@@ -4,3 +4,13 @@
 *.m linguist-language=Dart
 *.h linguist-language=Dart
 *.cpp linguist-language=Dart
+*.cc linguist-language=Dart
+*.cmake linguist-language=Dart
+
+example/web/** linguist-vendored
+example/ios/** linguist-vendored
+example/android/** linguist-vendored
+example/linux/** linguist-vendored
+example/macos/** linguist-vendored
+example/windows/** linguist-vendored
+example/build/** linguist-vendored

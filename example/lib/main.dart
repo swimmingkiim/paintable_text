@@ -17,26 +17,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo for Draggable Text Canvas',
+      title: 'Flutter Demo for EditableTextPainter Canvas',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const DraggableTextCanvas(
-          title: 'Flutter Demo for Draggable Text Canvas'),
+      home: const EditableTextPainterExample(
+          title: 'Flutter Demo for EditableTextPainter Canvas'),
     );
   }
 }
 
-class DraggableTextCanvas extends StatefulWidget {
-  const DraggableTextCanvas({Key? key, required this.title}) : super(key: key);
+class EditableTextPainterExample extends StatefulWidget {
+  const EditableTextPainterExample({Key? key, required this.title})
+      : super(key: key);
 
   final String title;
 
   @override
-  State<DraggableTextCanvas> createState() => _DraggableTextCanvasState();
+  State<EditableTextPainterExample> createState() =>
+      _EditableTextPainterExampleState();
 }
 
-class _DraggableTextCanvasState extends State<DraggableTextCanvas> {
+class _EditableTextPainterExampleState
+    extends State<EditableTextPainterExample> {
   final EditableTextController controller = EditableTextController(
     text: 'hello world!',
     textStyle: const TextStyle(
@@ -81,50 +84,52 @@ class _DraggableTextCanvasState extends State<DraggableTextCanvas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LayoutBuilder(builder: (context, constraints) {
-        return GestureDetector(
-          onPanDown: (event) {
-            _down(event);
-          },
-          onPanEnd: (details) {
-            _up();
-          },
-          onPanUpdate: (details) {
-            _move(details, constraints);
-          },
-          onTapUp: (TapUpDetails details) {
-            setState(() {
-              if (controller.isHover(details.localPosition)) {
-                controller.editing = true;
-                controller.data.focusNode.requestFocus();
-              } else {
-                controller.data.focusNode.unfocus();
-                controller.editing = false;
-              }
-            });
-          },
-          child: Container(
-            width: constraints.maxWidth,
-            height: constraints.maxHeight,
-            color: Colors.grey,
-            child: Stack(
-              children: [
-                if (controller.editing) controller.textField,
-                if (!controller.editing)
-                  CustomPaint(
-                    foregroundPainter: EditableTextTextPainter(
-                      controller: controller..canvasConstraints = constraints,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return GestureDetector(
+            onPanDown: (event) {
+              _down(event);
+            },
+            onPanEnd: (details) {
+              _up();
+            },
+            onPanUpdate: (details) {
+              _move(details, constraints);
+            },
+            onTapUp: (TapUpDetails details) {
+              setState(() {
+                if (controller.isHover(details.localPosition)) {
+                  controller.editing = true;
+                  controller.data.focusNode.requestFocus();
+                } else {
+                  controller.data.focusNode.unfocus();
+                  controller.editing = false;
+                }
+              });
+            },
+            child: Container(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              color: Colors.grey,
+              child: Stack(
+                children: [
+                  if (controller.editing) controller.textField,
+                  if (!controller.editing)
+                    CustomPaint(
+                      foregroundPainter: EditableTextTextPainter(
+                        controller: controller..canvasConstraints = constraints,
+                      ),
+                      size: Size(
+                        MediaQuery.of(context).size.width,
+                        MediaQuery.of(context).size.height,
+                      ),
                     ),
-                    size: Size(
-                      MediaQuery.of(context).size.width,
-                      MediaQuery.of(context).size.height,
-                    ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      }), // This trailing comma makes auto-formatting nicer for build methods.
+          );
+        },
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

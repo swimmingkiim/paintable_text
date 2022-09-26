@@ -95,7 +95,9 @@ class _DraggableTextCanvasState extends State<DraggableTextCanvas> {
             setState(() {
               if (controller.isHover(details.localPosition)) {
                 controller.editing = true;
+                controller.data.focusNode.requestFocus();
               } else {
+                controller.data.focusNode.unfocus();
                 controller.editing = false;
               }
             });
@@ -104,14 +106,20 @@ class _DraggableTextCanvasState extends State<DraggableTextCanvas> {
             width: constraints.maxWidth,
             height: constraints.maxHeight,
             color: Colors.grey,
-            child: CustomPaint(
-              foregroundPainter: EditableTextTextPainter(
-                controller: controller..canvasConstraints = constraints,
-              ),
-              size: Size(
-                MediaQuery.of(context).size.width,
-                MediaQuery.of(context).size.height,
-              ),
+            child: Stack(
+              children: [
+                if (controller.editing) controller.textField,
+                if (!controller.editing)
+                  CustomPaint(
+                    foregroundPainter: EditableTextTextPainter(
+                      controller: controller..canvasConstraints = constraints,
+                    ),
+                    size: Size(
+                      MediaQuery.of(context).size.width,
+                      MediaQuery.of(context).size.height,
+                    ),
+                  ),
+              ],
             ),
           ),
         );

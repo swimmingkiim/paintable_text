@@ -50,6 +50,35 @@ class EditableTextController {
     );
   }
 
+  Widget get textField {
+    return Positioned(
+      top: position.y,
+      left: position.x,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: textSize!.width,
+          minHeight: textSize!.height,
+        ),
+        child: IntrinsicWidth(
+          child: TextField(
+            controller: data.textEditingController,
+            focusNode: data.focusNode,
+            maxLines: null,
+            scrollPadding: const EdgeInsets.all(0.0),
+            textAlign: TextAlign.center,
+            textAlignVertical: TextAlignVertical.center,
+            style: textStyle,
+            decoration: const InputDecoration(
+              isDense: true,
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.zero,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   bool isHover(Offset offset) {
     if (textSize == null) {
       return false;

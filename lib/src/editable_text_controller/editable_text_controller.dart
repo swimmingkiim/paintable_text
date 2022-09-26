@@ -36,15 +36,11 @@ class EditableTextController {
   TextStyle textStyle;
   BoxConstraints canvasConstraints;
 
-  bool _editing = false;
-  bool _moving = false;
+  bool editing = false;
+  bool moving = false;
   Size? textSize;
 
   String get text => data.textData;
-
-  bool get editing => _editing;
-
-  bool get moving => _moving;
 
   Rect get rect {
     if (textSize == null) {
@@ -54,16 +50,6 @@ class EditableTextController {
       Offset(position.x + textSize!.width + 2, position.y),
       Offset(position.x + textSize!.width + 5, position.y + textSize!.height),
     );
-  }
-
-  set editing(bool editing) {
-    _editing = editing;
-    data.editing = _editing;
-  }
-
-  set moving(bool moving) {
-    _moving = moving;
-    position.moving = _moving;
   }
 
   bool isHover(Offset offset) {

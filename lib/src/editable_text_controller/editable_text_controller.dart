@@ -40,16 +40,6 @@ class EditableTextController {
   bool moving = false;
   Size? textSize;
 
-  Rect get rect {
-    if (textSize == null) {
-      return Rect.zero;
-    }
-    return Rect.fromPoints(
-      Offset(position.x + textSize!.width + 2, position.y),
-      Offset(position.x + textSize!.width + 5, position.y + textSize!.height),
-    );
-  }
-
   Widget get textField {
     return Positioned(
       top: position.y,

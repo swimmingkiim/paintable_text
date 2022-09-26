@@ -35,9 +35,6 @@ class EditableTextTextPainter extends CustomPainter {
     final yCenter = controller.position.y;
     final offset = Offset(xCenter, yCenter);
     textPainter.paint(canvas, offset);
-    if (controller.editing) {
-      canvas.drawRect(controller.rect, Paint()..color = controller.color);
-    }
   }
 
   @override

@@ -1,7 +1,13 @@
+import 'package:flutter/material.dart';
+
 class EditableTextData {
-  EditableTextData({required this.textData});
+  EditableTextData({String? text})
+      : textEditingController = TextEditingController(text: text);
 
-  String textData;
+  TextEditingController textEditingController;
+  FocusNode focusNode = FocusNode();
 
-  void updateTextData(String text) => textData = text;
+  String get text => textEditingController.text;
+
+  void updateTextData(String text) => textEditingController.text = text;
 }

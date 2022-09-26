@@ -16,7 +16,7 @@ class EditableTextTextPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final textSpan = TextSpan(
-      text: controller.data.textData,
+      text: controller.data.text,
       style: controller.textStyle,
     );
     textPainter = TextPainter(

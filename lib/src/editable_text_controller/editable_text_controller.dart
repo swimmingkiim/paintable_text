@@ -25,7 +25,7 @@ class EditableTextController {
     Color? color,
   })  : canvasConstraints = canvasConstraints ?? defaultCanvasConstraints,
         color = color ?? defaultTextColor,
-        data = EditableTextData(textData: text),
+        data = EditableTextData(text: text),
         position = EditableTextPosition(position: Vector2.zero()),
         textStyle = textStyle ?? defaultTextStyle;
 
@@ -39,8 +39,6 @@ class EditableTextController {
   bool editing = false;
   bool moving = false;
   Size? textSize;
-
-  String get text => data.textData;
 
   Rect get rect {
     if (textSize == null) {

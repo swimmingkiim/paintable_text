@@ -31,9 +31,10 @@ class EditableTextTextPainter extends CustomPainter {
 
     controller.textSize = textPainter.size;
 
-    final xCenter = controller.position.x;
-    final yCenter = controller.position.y;
-    final offset = Offset(xCenter, yCenter);
+    final offset = Offset(
+      controller.position.x,
+      controller.position.y,
+    );
     textPainter.paint(canvas, offset);
   }
 

@@ -8,6 +8,4 @@ class EditableTextData {
   FocusNode focusNode = FocusNode();
 
   String get text => textEditingController.text;
-
-  void updateTextData(String text) => textEditingController.text = text;
 }

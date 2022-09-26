@@ -43,6 +43,7 @@ class _DraggableTextCanvasState extends State<DraggableTextCanvas> {
       fontSize: 20.0,
       color: Colors.black,
     ),
+    offset: const Offset(100.0, 100.0),
   );
 
   void _down(DragDownDetails details) {

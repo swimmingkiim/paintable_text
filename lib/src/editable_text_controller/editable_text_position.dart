@@ -13,6 +13,4 @@ class EditableTextPosition {
   set x(double x) => position.x = x;
 
   set y(double y) => position.y = y;
-
-  void addVector2(Vector2 vector2) => position.add(vector2);
 }

@@ -135,7 +135,7 @@ class _EditableTextPainterExampleState
             ),
           );
         },
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

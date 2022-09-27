@@ -10,9 +10,10 @@ For general information about developing packages, see the Dart guide for
 and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
+# editable_text_painter
+This package provides advanced TextPainter with features like dragging text and editing text.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+![example_demo](https://github.com/swimmingkiim/editable_text_painter/blob/main/screenshots/example_demo.gif?raw=true)
 
 ## Features
 

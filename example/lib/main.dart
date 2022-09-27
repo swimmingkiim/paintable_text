@@ -69,13 +69,19 @@ class _EditableTextPainterExampleState
     if (controller.moving) {
       setState(() {
         final double x = max(
-            0,
-            min(controller.position.x + details.delta.dx,
-                controller.canvasConstraints.constrainWidth()));
+          0,
+          min(
+            controller.position.x + details.delta.dx,
+            controller.canvasConstraints.constrainWidth(),
+          ),
+        );
         final double y = max(
-            0,
-            min(controller.position.y + details.delta.dy,
-                controller.canvasConstraints.constrainHeight()));
+          0,
+          min(
+            controller.position.y + details.delta.dy,
+            controller.canvasConstraints.constrainHeight(),
+          ),
+        );
         controller.updatePosition(Offset(x, y));
       });
     }

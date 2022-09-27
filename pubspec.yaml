@@ -2,6 +2,8 @@ name: editable_text_painter
 description: Flutter text painter with advanced features
 version: 0.0.1
 homepage: https://github.com/swimmingkiim/editable_text_painter
+repository: https://github.com/swimmingkiim/editable_text_painter
+issue_tracker: https://github.com/swimmingkiim/editable_text_painter/issues
 
 environment:
   sdk: '>=2.18.1 <3.0.0'

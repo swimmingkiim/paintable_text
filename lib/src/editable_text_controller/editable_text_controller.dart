@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 // packages
 import 'package:vector_math/vector_math.dart';
 
-// src
-import 'package:editable_text_painter/src/editable_text_controller/editable_text_data.dart';
-
 const TextStyle defaultTextStyle = TextStyle();
 const Color defaultTextColor = Color(0xFF000000);
 const BoxConstraints defaultCanvasConstraints = BoxConstraints(
@@ -25,12 +22,14 @@ class EditableTextController {
     Offset? offset,
   })  : canvasConstraints = canvasConstraints ?? defaultCanvasConstraints,
         color = color ?? defaultTextColor,
-        data = EditableTextData(text: text),
+        textEditingController = TextEditingController(text: text),
         position = Vector2(offset?.dx ?? 0, offset?.dy ?? 0),
         textStyle = textStyle ?? defaultTextStyle;
 
-  final EditableTextData data;
   final Vector2 position;
+
+  final TextEditingController textEditingController;
+  final FocusNode focusNode = FocusNode();
 
   Color color;
   TextStyle textStyle;
@@ -39,6 +38,8 @@ class EditableTextController {
   bool editing = false;
   bool moving = false;
   Size? textSize;
+
+  String get text => textEditingController.text;
 
   Widget get textField {
     return Positioned(
@@ -51,8 +52,8 @@ class EditableTextController {
         ),
         child: IntrinsicWidth(
           child: TextField(
-            controller: data.textEditingController,
-            focusNode: data.focusNode,
+            controller: textEditingController,
+            focusNode: focusNode,
             maxLines: null,
             scrollPadding: const EdgeInsets.all(0.0),
             textAlign: TextAlign.center,

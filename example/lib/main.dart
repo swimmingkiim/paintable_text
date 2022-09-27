@@ -106,9 +106,9 @@ class _EditableTextPainterExampleState
               setState(() {
                 if (controller.isHover(details.localPosition)) {
                   controller.editing = true;
-                  controller.data.focusNode.requestFocus();
+                  controller.focusNode.requestFocus();
                 } else {
-                  controller.data.focusNode.unfocus();
+                  controller.focusNode.unfocus();
                   controller.editing = false;
                 }
               });

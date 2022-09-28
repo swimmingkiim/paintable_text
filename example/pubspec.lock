@@ -43,7 +43,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  editable_text_painter:
+  editable_text:
     dependency: "direct main"
     description:
       path: ".."

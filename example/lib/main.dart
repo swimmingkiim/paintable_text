@@ -5,7 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 // packages
-import 'package:editable_text_painter/editable_text_painter.dart';
+import 'package:editable_text/editable_text.dart';
 
 void main() {
   runApp(const MyApp());

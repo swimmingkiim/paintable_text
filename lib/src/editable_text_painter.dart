@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // src
-import 'package:editable_text_painter/src/editable_text_controller.dart';
+import 'package:editable_text/src/editable_text_controller.dart';
 
 class EditableTextTextPainter extends CustomPainter {
   EditableTextTextPainter({

@@ -1,11 +1,8 @@
-// dart
-import 'dart:math';
-
 // flutter
 import 'package:flutter/material.dart';
 
 // packages
-import 'package:editable_text/editable_text.dart';
+import 'package:editable_text/editable_text.dart' as editable_text;
 
 void main() {
   runApp(const MyApp());
@@ -21,121 +18,46 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const EditableTextPainterExample(
-          title: 'Flutter Demo for EditableTextPainter Canvas'),
+      home: const EditableTextExample(),
     );
   }
 }
 
-class EditableTextPainterExample extends StatefulWidget {
-  const EditableTextPainterExample({Key? key, required this.title})
-      : super(key: key);
-
-  final String title;
+class EditableTextExample extends StatefulWidget {
+  const EditableTextExample({super.key});
 
   @override
-  State<EditableTextPainterExample> createState() =>
-      _EditableTextPainterExampleState();
+  State<EditableTextExample> createState() => _EditableTextExampleState();
 }
 
-class _EditableTextPainterExampleState
-    extends State<EditableTextPainterExample> {
-  final EditableTextController controller = EditableTextController(
-    text: 'hello world!',
+class _EditableTextExampleState extends State<EditableTextExample> {
+  final editable_text.EditableTextController controller1 =
+      editable_text.EditableTextController(
+    text: 'text_1',
     textStyle: const TextStyle(
-      fontSize: 20.0,
-      color: Colors.black,
+      color: Colors.red,
     ),
     offset: const Offset(100.0, 100.0),
   );
 
-  void _down(DragDownDetails details) {
-    setState(() {
-      if (controller.isHover(details.localPosition)) {
-        controller.moving = true;
-      } else {
-        controller.moving = false;
-      }
-    });
-  }
-
-  void _up() {
-    setState(() {
-      controller.moving = false;
-    });
-  }
-
-  void _move(DragUpdateDetails details, BoxConstraints constraints) {
-    if (controller.moving) {
-      setState(() {
-        final double x = max(
-          0,
-          min(
-            controller.position.x + details.delta.dx,
-            controller.canvasConstraints.constrainWidth(),
-          ),
-        );
-        final double y = max(
-          0,
-          min(
-            controller.position.y + details.delta.dy,
-            controller.canvasConstraints.constrainHeight(),
-          ),
-        );
-        controller.updatePosition(Offset(x, y));
-      });
-    }
-  }
+  final editable_text.EditableTextController controller2 =
+      editable_text.EditableTextController(
+    text: 'text_2',
+    textStyle: const TextStyle(
+      color: Colors.blue,
+    ),
+    offset: const Offset(200.0, 200.0),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return GestureDetector(
-            onPanDown: (event) {
-              _down(event);
-            },
-            onPanEnd: (details) {
-              _up();
-            },
-            onPanUpdate: (details) {
-              _move(details, constraints);
-            },
-            onTapUp: (TapUpDetails details) {
-              setState(() {
-                if (controller.isHover(details.localPosition)) {
-                  controller.editing = true;
-                  controller.focusNode.requestFocus();
-                } else {
-                  controller.focusNode.unfocus();
-                  controller.editing = false;
-                }
-              });
-            },
-            child: Container(
-              width: constraints.maxWidth,
-              height: constraints.maxHeight,
-              color: Colors.grey,
-              child: Stack(
-                children: [
-                  if (controller.editing) controller.textField,
-                  if (!controller.editing)
-                    CustomPaint(
-                      foregroundPainter: EditableTextTextPainter(
-                        controller: controller..canvasConstraints = constraints,
-                      ),
-                      size: Size(
-                        MediaQuery.of(context).size.width,
-                        MediaQuery.of(context).size.height,
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
+      body: LayoutBuilder(builder: (context, constraints) {
+        return editable_text.EditableText(controllers: [
+          controller1..canvasConstraints = constraints,
+          controller2..canvasConstraints = constraints,
+        ]);
+      }),
     );
   }
 }

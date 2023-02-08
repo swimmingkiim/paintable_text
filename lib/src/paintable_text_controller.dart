@@ -17,6 +17,7 @@ class PaintableTextController {
   PaintableTextController({
     BoxConstraints? canvasConstraints,
     String text = '',
+    this.onTextChange,
     TextStyle? textStyle,
     Color? color,
     Offset? offset,
@@ -29,6 +30,7 @@ class PaintableTextController {
   final Vector2 position;
 
   final TextEditingController textEditingController;
+  final void Function(String)? onTextChange;
   final FocusNode focusNode = FocusNode();
 
   Color color;
@@ -53,6 +55,7 @@ class PaintableTextController {
         child: IntrinsicWidth(
           child: TextField(
             controller: textEditingController,
+            onChanged: onTextChange,
             focusNode: focusNode,
             maxLines: null,
             scrollPadding: const EdgeInsets.all(0.0),

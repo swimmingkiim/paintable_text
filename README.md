@@ -1,7 +1,7 @@
-# editable_text_painter
+# paintable_text_painter
 This package provides advanced TextPainter with features like dragging text and editing text.
 
-![example_demo](https://github.com/swimmingkiim/editable_text_painter/blob/main/screenshots/example_demo.gif?raw=true)
+![example_demo](https://github.com/swimmingkiim/paintable_text_painter/blob/main/screenshots/example_demo.gif?raw=true)
 
 ## Features
 
@@ -14,7 +14,7 @@ This package provides advanced TextPainter with features like dragging text and 
 
 ### Install package
 ```bash
-flutter pub add editable_text_painter
+flutter pub add paintable_text_painter
 ```
 
 No other prerequisites required
@@ -22,16 +22,16 @@ No other prerequisites required
 ## Usage
 
 ```dart
-class EditableTextExample extends StatefulWidget {
-  const EditableTextExample({super.key});
+class PaintableTextExample extends StatefulWidget {
+  const PaintableTextExample({super.key});
 
   @override
-  State<EditableTextExample> createState() => _EditableTextExampleState();
+  State<PaintableTextExample> createState() => _PaintableTextExampleState();
 }
 
-class _EditableTextExampleState extends State<EditableTextExample> {
-  final editable_text.EditableTextController controller1 =
-      editable_text.EditableTextController(
+class _PaintableTextExampleState extends State<PaintableTextExample> {
+  final PaintableTextController controller1 =
+      PaintableTextController(
     text: 'text_1',
     textStyle: const TextStyle(
       color: Colors.red,
@@ -39,8 +39,8 @@ class _EditableTextExampleState extends State<EditableTextExample> {
     offset: const Offset(100.0, 100.0),
   );
 
-  final editable_text.EditableTextController controller2 =
-      editable_text.EditableTextController(
+  final PaintableTextController controller2 =
+      PaintableTextController(
     text: 'text_2',
     textStyle: const TextStyle(
       color: Colors.blue,
@@ -52,7 +52,7 @@ class _EditableTextExampleState extends State<EditableTextExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(builder: (context, constraints) {
-        return editable_text.EditableText(controllers: [
+        return PaintableText(controllers: [
           controller1..canvasConstraints = constraints,
           controller2..canvasConstraints = constraints,
         ]);

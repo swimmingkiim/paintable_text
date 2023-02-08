@@ -8,20 +8,20 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
 // src
-import 'editable_text_controller.dart';
-import 'editable_text_painter.dart';
+import 'paintable_text_controller.dart';
+import 'paintable_text_painter.dart';
 
-class EditableText extends StatefulWidget {
-  const EditableText({Key? key, required this.controllers}) : super(key: key);
+class PaintableText extends StatefulWidget {
+  const PaintableText({Key? key, required this.controllers}) : super(key: key);
 
-  final List<EditableTextController> controllers;
+  final List<PaintableTextController> controllers;
 
   @override
-  State<EditableText> createState() => _EditableTextState();
+  State<PaintableText> createState() => _PaintableTextState();
 }
 
-class _EditableTextState extends State<EditableText> {
-  EditableTextController? currentController;
+class _PaintableTextState extends State<PaintableText> {
+  PaintableTextController? currentController;
 
   void _down(DragDownDetails details) {
     setState(() {
@@ -66,7 +66,7 @@ class _EditableTextState extends State<EditableText> {
 
   void _tap(TapUpDetails details) {
     setState(() {
-      final EditableTextController? targetController = widget.controllers
+      final PaintableTextController? targetController = widget.controllers
           .lastWhereOrNull(
               (controller) => controller.isHover(details.localPosition));
       for (var controller in widget.controllers) {
@@ -98,20 +98,20 @@ class _EditableTextState extends State<EditableText> {
       child: Stack(
         children: widget.controllers
             .map<Widget>((controller) =>
-                EditingTextCustomPaintWidget(controller: controller))
+                PaintableTextCustomPaintWidget(controller: controller))
             .toList(),
       ),
     );
   }
 }
 
-class EditingTextCustomPaintWidget extends StatelessWidget {
-  const EditingTextCustomPaintWidget({
+class PaintableTextCustomPaintWidget extends StatelessWidget {
+  const PaintableTextCustomPaintWidget({
     super.key,
     required this.controller,
   });
 
-  final EditableTextController controller;
+  final PaintableTextController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +120,7 @@ class EditingTextCustomPaintWidget extends StatelessWidget {
         if (controller.editing) controller.textField,
         if (!controller.editing)
           CustomPaint(
-            foregroundPainter: EditableTextTextPainter(
+            foregroundPainter: PaintableTextTextPainter(
               controller: controller,
             ),
             size: Size(

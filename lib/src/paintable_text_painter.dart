@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 
 // src
-import 'package:editable_text/src/editable_text_controller.dart';
+import 'paintable_text_controller.dart';
 
-class EditableTextTextPainter extends CustomPainter {
-  EditableTextTextPainter({
+class PaintableTextTextPainter extends CustomPainter {
+  PaintableTextTextPainter({
     required this.controller,
   });
 
-  final EditableTextController controller;
+  final PaintableTextController controller;
 
   TextPainter textPainter = TextPainter();
 
@@ -39,7 +39,7 @@ class EditableTextTextPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(EditableTextTextPainter oldDelegate) {
+  bool shouldRepaint(PaintableTextTextPainter oldDelegate) {
     if (!controller.moving && !controller.editing) {
       return false;
     }

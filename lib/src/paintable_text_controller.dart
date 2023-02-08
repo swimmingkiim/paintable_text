@@ -13,8 +13,8 @@ const BoxConstraints defaultCanvasConstraints = BoxConstraints(
   maxHeight: double.infinity,
 );
 
-class EditableTextController {
-  EditableTextController({
+class PaintableTextController {
+  PaintableTextController({
     BoxConstraints? canvasConstraints,
     String text = '',
     TextStyle? textStyle,

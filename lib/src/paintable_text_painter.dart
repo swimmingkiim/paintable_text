@@ -24,10 +24,7 @@ class PaintableTextTextPainter extends CustomPainter {
       textDirection: TextDirection.ltr,
       textAlign: TextAlign.center,
     );
-    textPainter.layout(
-      minWidth: controller.canvasConstraints.minWidth,
-      maxWidth: controller.canvasConstraints.maxWidth,
-    );
+    textPainter.layout();
 
     controller.textSize = textPainter.size;
 

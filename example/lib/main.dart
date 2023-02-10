@@ -52,12 +52,17 @@ class _PaintableTextExampleState extends State<PaintableTextExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LayoutBuilder(builder: (context, constraints) {
-        return PaintableText(controllers: [
-          controller1..canvasConstraints = constraints,
-          controller2..canvasConstraints = constraints,
-        ]);
-      }),
+      body: Container(
+        width: 500.0,
+        height: 500.0,
+        color: Colors.red,
+        child: LayoutBuilder(builder: (context, constraints) {
+          return PaintableText(controllers: [
+            controller1..canvasConstraints = constraints,
+            controller2..canvasConstraints = constraints,
+          ]);
+        }),
+      ),
     );
   }
 }

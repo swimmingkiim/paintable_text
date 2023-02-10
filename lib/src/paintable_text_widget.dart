@@ -49,7 +49,7 @@ class _PaintableTextState extends State<PaintableText> {
           0,
           min(
             currentController!.position.x + details.delta.dx,
-            currentController!.canvasConstraints.constrainWidth() -
+            currentController!.canvasConstraints.maxWidth -
                 currentController!.textSize!.width,
           ),
         );
@@ -57,7 +57,7 @@ class _PaintableTextState extends State<PaintableText> {
           0,
           min(
             currentController!.position.y + details.delta.dy,
-            currentController!.canvasConstraints.constrainHeight() -
+            currentController!.canvasConstraints.maxHeight -
                 currentController!.textSize!.height,
           ),
         );

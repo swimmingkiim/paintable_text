@@ -49,14 +49,16 @@ class _PaintableTextState extends State<PaintableText> {
           0,
           min(
             currentController!.position.x + details.delta.dx,
-            currentController!.canvasConstraints.constrainWidth(),
+            currentController!.canvasConstraints.constrainWidth() -
+                currentController!.textSize!.width,
           ),
         );
         final double y = max(
           0,
           min(
             currentController!.position.y + details.delta.dy,
-            currentController!.canvasConstraints.constrainHeight(),
+            currentController!.canvasConstraints.constrainHeight() -
+                currentController!.textSize!.height,
           ),
         );
         currentController!.updatePosition(Offset(x, y));

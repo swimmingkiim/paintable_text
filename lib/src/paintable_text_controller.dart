@@ -1,8 +1,9 @@
 // flutter
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // packages
-import 'package:vector_math/vector_math.dart';
+import 'package:vector_math/vector_math.dart' show Vector2;
 
 const TextStyle defaultTextStyle = TextStyle();
 const Color defaultTextColor = Color(0xFF000000);
@@ -53,7 +54,7 @@ class PaintableTextController {
           minHeight: textSize!.height,
         ),
         child: IntrinsicWidth(
-          child: TextField(
+          child: TextFormField(
             controller: textEditingController,
             onChanged: onTextChange,
             focusNode: focusNode,

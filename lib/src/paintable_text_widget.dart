@@ -12,9 +12,14 @@ import 'paintable_text_controller.dart';
 import 'paintable_text_painter.dart';
 
 class PaintableText extends StatefulWidget {
-  const PaintableText({Key? key, required this.controllers}) : super(key: key);
+  const PaintableText({
+    Key? key,
+    required this.controllers,
+    required this.constraints,
+  }) : super(key: key);
 
   final List<PaintableTextController> controllers;
+  final BoxConstraints constraints;
 
   @override
   State<PaintableText> createState() => _PaintableTextState();
@@ -94,14 +99,22 @@ class _PaintableTextState extends State<PaintableText> {
       onPanUpdate: (details) {
         _move(details);
       },
+      onTap: () {},
       onTapUp: (TapUpDetails details) {
         _tap(details);
       },
       child: Stack(
-        children: widget.controllers
-            .map<Widget>((controller) =>
-                PaintableTextCustomPaintWidget(controller: controller))
-            .toList(),
+        children: [
+          Container(
+            width: widget.constraints.maxWidth,
+            height: widget.constraints.maxHeight,
+            color: Colors.transparent,
+          ),
+          ...widget.controllers
+              .map<Widget>((controller) =>
+                  PaintableTextCustomPaintWidget(controller: controller))
+              .toList(),
+        ],
       ),
     );
   }

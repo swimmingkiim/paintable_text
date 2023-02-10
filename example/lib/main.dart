@@ -34,7 +34,7 @@ class _PaintableTextExampleState extends State<PaintableTextExample> {
   final PaintableTextController controller1 = PaintableTextController(
     text: 'text_1',
     textStyle: const TextStyle(
-      color: Colors.red,
+      color: Colors.white,
       fontSize: 20.0,
     ),
     offset: const Offset(100.0, 100.0),
@@ -43,10 +43,10 @@ class _PaintableTextExampleState extends State<PaintableTextExample> {
   final PaintableTextController controller2 = PaintableTextController(
     text: 'text_2',
     textStyle: const TextStyle(
-      color: Colors.blue,
+      color: Colors.white,
       fontSize: 20.0,
     ),
-    offset: const Offset(200.0, 200.0),
+    offset: const Offset(100.0, 100.0),
   );
 
   @override
@@ -57,7 +57,7 @@ class _PaintableTextExampleState extends State<PaintableTextExample> {
         height: 500.0,
         color: Colors.red,
         child: LayoutBuilder(builder: (context, constraints) {
-          return PaintableText(controllers: [
+          return PaintableText(constraints: constraints, controllers: [
             controller1..canvasConstraints = constraints,
             controller2..canvasConstraints = constraints,
           ]);
